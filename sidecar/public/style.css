@@ -1,0 +1,146 @@
+#login, #loggedin {
+    display: none;
+}
+
+.text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 130px;
+}
+
+.hide-this {
+    display: none;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-content: right;
+    padding-right: 12px;
+}
+
+.controls button {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+body {
+    background-color: darkslategray;
+    color: white;
+    max-width: 320px;
+    max-height: 240px;
+    height: 240px;
+    border-style: dashed;
+    position: relative;
+}
+
+#loggedin {
+    display: flex;
+    flex-direction: row;
+    max-width: 320px;
+    max-height: 240px;
+    justify-content: space-between;
+}
+
+.media {
+    display: flex;
+    vertical-align: baseline;
+}
+
+.media-body {
+    display: grid;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.media-body span {
+    display: flex;
+    align-items: center;
+}
+
+.media-body p {
+    margin-bottom: 0px;
+    margin-right: 5px;
+}
+
+.container {
+    margin-left: 10px;
+    padding-left: 0px;
+}
+
+.progress {
+    background-color: black;
+    margin: 0px;
+    border-radius: 10px;
+    height: 10px;
+}
+
+.progress-bar-container {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 10px;
+    height: 10px;
+}
+
+.time {
+    justify-content: space-between;
+}
+
+.right-text {
+    text-align: right;
+    margin: 0px !important;
+}
+
+h2 {
+    font-size: medium;
+    margin: 5px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 250px;
+}
+
+.media-body p {
+    font-size: smaller;
+}
+
+p {
+    font-size: small;
+}
+
+h4 {
+    font-size: small;
+    margin: 5px;
+}
+
+.left-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.timing-container {
+    position: absolute;
+    bottom: 10px;
+    height: 30px;
+    width: 75%;
+}
+
+.timing-container span {
+    display: flex;
+    align-items: center;
+}
+
+.timing-container p {
+    margin-bottom: 0px;
+    margin-right: 10px;
+}
+
+.playback {
+    max-height: 240px;
+}
+
+.left-col {
+    margin-top: 5px;;
+}
