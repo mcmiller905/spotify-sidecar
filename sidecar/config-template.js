@@ -1,4 +1,5 @@
-// config.js
+// config-template.js
+// copy as config.js and add your personal info
 // =========
 module.exports = {
     get_client_id: function(){ return 'put-your-client-id-here'; },
