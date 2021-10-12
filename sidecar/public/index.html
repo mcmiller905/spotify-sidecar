@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
-    <script src="resource/config.js"></script>
   </head>
 
   <body>
@@ -135,6 +134,20 @@
           return Math.round((progress / total) * 100);
         })
 
+        let playlistId = "notset";
+        $.ajax({
+          url: "/playlist-id",
+          success: function( data ) {
+            playlistId = data.playlist_id;
+            console.log(data.playlist_id);
+          },
+          async: false
+        });
+        
+        console.log(playlistId);
+
+        var playlistUrl = 'https://api.spotify.com/v1/playlists/' + playlistId + '/tracks';
+
         if (error) {
           alert('There was an error during the authentication');
         } else {
@@ -152,7 +165,7 @@
                 }
             });
             $.ajax({
-              url: 'https://api.spotify.com/v1/playlists/6tU6fmirTyUPxjEn3xS4Pc/tracks',
+              url: playlistUrl,
                 headers: {
                   'Authorization': 'Bearer ' + access_token
                 },
@@ -256,8 +269,19 @@
           // Save song button
           document.getElementById('save-song').addEventListener('click', function() {
             id = document.getElementById('song-id').innerHTML;
+
+            
+        $.ajax({
+          url: "/playlist-id",
+          type: 'GET',
+          success: function( data ) {
+          playlistId = data.playlist_id;
+          }
+        });
+
+            var addIdUrl = 'https://api.spotify.com/v1/playlists/' + playlistId + '/tracks?uris=spotify:track:' + id;
             $.ajax({
-              url: 'https://api.spotify.com/v1/playlists/6tU6fmirTyUPxjEn3xS4Pc/tracks?uris=spotify:track:' + id,
+              url: addIdUrl,
                 headers: {
                   'Authorization': 'Bearer ' + access_token
                 },

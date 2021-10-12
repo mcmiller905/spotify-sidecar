@@ -8,6 +8,7 @@ var config = require('./config'); // keep id and secret in a separate gitignored
 var client_id = config.get_client_id(); // Your client id
 var client_secret = config.get_client_secret(); // Your secret
 var redirect_uri = config.get_redirect_uri(); // Your redirect uri
+var playlist_id_value = config.get_playlist_id(); //Your playlist id
 
 /**
  * Generates a random string containing numbers and letters
@@ -27,6 +28,10 @@ var generateRandomString = function(length) {
 var stateKey = 'spotify_auth_state';
 
 var app = express();
+
+app.get('/playlist-id', function(req, res) {
+  res.json({ playlist_id: playlist_id_value });
+});
 
 app.use(express.static(__dirname + '/public'))
    .use(cors())
