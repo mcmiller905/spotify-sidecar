@@ -29,14 +29,20 @@ var stateKey = 'spotify_auth_state';
 
 var app = express();
 
-app.get('/playlist-id', function(req, res) {
-  res.json({ playlist_id: playlist_id_value });
-});
-
 app.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
 
+//---------------------
+// Playlist ID Endpoint
+//---------------------
+app.get('/playlist-id', function(req, res) {
+  res.json({ playlist_id: playlist_id_value });
+});
+
+//---------------
+// Login Endpoint
+//---------------
 app.get('/login', function(req, res) {
 
   var state = generateRandomString(16);
@@ -54,6 +60,9 @@ app.get('/login', function(req, res) {
     }));
 });
 
+//------------------
+// Callback Endpoint
+//------------------
 app.get('/callback', function(req, res) {
 
   // your application requests refresh and access tokens
@@ -84,23 +93,11 @@ app.get('/callback', function(req, res) {
     };
 
     // User Info request
-
     request.post(authOptions, function(error, response, body) {
       if (!error && response.statusCode === 200) {
 
         var access_token = body.access_token,
             refresh_token = body.refresh_token;
-
-        // var options = {
-        //   url: 'https://api.spotify.com/v1/me',
-        //   headers: { 'Authorization': 'Bearer ' + access_token },
-        //   json: true
-        // };
-
-        // // use the access token to access the Spotify Web API
-        // request.get(options, function(error, response, body) {
-        //   console.log(body);
-        // });
 
         var options = {
                 url: 'https://api.spotify.com/v1/me/player',
@@ -126,43 +123,12 @@ app.get('/callback', function(req, res) {
           }));
       }
     });
-
-    // Current Playback request
-
-    // request.get(authOptions, function(error, response, body) {
-    //   if(!error && response.statusCode === 200) {
-
-    //     var access_token = body.access_token,
-    //         refresh_token = body.refresh_token;
-
-    //     var options = {
-    //       url: 'https://api.spotify.com/v1/me/player',
-    //       headers: { 'Authorization': 'Bearer ' + access_token },
-    //       json: true
-    //     };
-
-    //     // use the access token to access the Spotify Web API
-    //     request.get(options, function(error, response, body) {
-    //       console.log(body);
-    //     });
-
-    //     // we can also pass the token to the browser to make requests from there
-    //     res.redirect('/#' +
-    //       querystring.stringify({
-    //         access_token: access_token,
-    //         refresh_token: refresh_token
-    //       }));
-    //   } else {
-    //     res.redirect('/#' +
-    //       querystring.stringify({
-    //         error: 'invalid_token'
-    //       }));
-    //   }
-    // });
-
   }
 });
 
+//-----------------------
+// Refresh Token Endpoint
+//-----------------------
 app.get('/refresh_token', function(req, res) {
 
   // requesting access token from refresh token
@@ -187,5 +153,8 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
+//----------------
+// Start Listening
+//----------------
 console.log('Listening on 8888');
 app.listen(8888);
