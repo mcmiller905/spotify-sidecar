@@ -8,7 +8,8 @@ var config = require('./config'); // keep id and secret in a separate gitignored
 var client_id = config.get_client_id(); // Your client id
 var client_secret = config.get_client_secret(); // Your secret
 var redirect_uri = config.get_redirect_uri(); // Your redirect uri
-var playlist_id_value = config.get_playlist_id(); //Your playlist id
+var playlist_id_value = config.get_playlist_id(); //Your playlist id to save songs to
+var radio_playlist_id_value = config.get_radio_playlist_id(); //Your playlist id for generating a radio playlist
 
 /**
  * Generates a random string containing numbers and letters
@@ -38,6 +39,13 @@ app.use(express.static(__dirname + '/public'))
 //---------------------
 app.get('/playlist-id', function(req, res) {
   res.json({ playlist_id: playlist_id_value });
+});
+
+//---------------------
+// Radio Playlist ID Endpoint
+//---------------------
+app.get('/radio-playlist-id', function(req, res) {
+  res.json({ radio_playlist_id: radio_playlist_id_value });
 });
 
 //---------------
