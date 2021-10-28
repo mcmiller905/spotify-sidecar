@@ -394,7 +394,14 @@
                   $('#loggedin').show();
                 }
             })
-            
+            is_playing = document.getElementById("is-playing").innerHTML;
+            if(is_playing){
+              document.getElementById("play-pause-playback").innerHTML = '<i class="fa fa-pause"></i>';
+            }else{
+              document.getElementById("play-pause-playback").innerHTML = '<i class="fa fa-play"></i>';
+
+            }
+          
           }, 1000);
 
           //refresh token every 50 minutes
