@@ -24,6 +24,6 @@ User info is contained in a config.js file. You need a client_id, client_secret,
 
 If you notice two syntax errors in *index.html*, it's due to using Handlebars syntax in a style tag. The compiler doesn't like {{token}} annotation in css, but it gets compiled away when token replacement happens.
 
-##To-dos##
+## To-dos
 - Automatically sign in
 - When the "create radio" button is pressed, finish playing the current song before changing to the new playlist
